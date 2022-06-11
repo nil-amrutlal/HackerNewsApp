@@ -1,0 +1,35 @@
+{
+  "name": "hackernewsapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "rm -rf build/ --write source/ && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nil-amrutlal/HackerNewsApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nil-amrutlal/HackerNewsApp/issues"
+  },
+  "homepage": "https://github.com/nil-amrutlal/HackerNewsApp#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.13",
+    "@types/morgan": "^1.9.3",
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  }
+}
