@@ -1,24 +1,13 @@
-// const express = require('express');
-// const dotenv = require('dotenv');
-
-// dotenv.config();
-
-// const app = express();
-// const port = process.env.PORT || 3000;
-
-// app.get('/', (req, res) => {
-//   res.send('Im alive');
-// });
-
-// app.listen(port, () => {
-//   console.log(`[server]: Server is running at https://localhost:${port}`);
-// });
+/** Required External Modules */
 
 import http from 'http';
 import express, { Express } from 'express';
 import morgan from 'morgan';
 import routes from './routes/stories';
-import dotenv = require('dotenv');
+import * as dotenv from "dotenv";
+import path from 'path';
+import cors from "cors";
+import helmet from "helmet";
 
 const router: Express = express();
 
@@ -27,6 +16,9 @@ router.use(express.urlencoded({extended:false}));
 router.use(express.json());
 
 dotenv.config();
+dotenv.config({ path: path.join(__dirname, 'config/.env') })
+
+
 
 /** RULES OF OUR API */
 router.use((req, res, next) => {
@@ -42,6 +34,10 @@ router.use((req, res, next) => {
     next();
 });
 
+
+/** Config */
+dotenv.config({ path: path.join(__dirname, 'config/.env') })
+
 /** Routes */
 router.use('/', routes);
 
@@ -55,5 +51,5 @@ router.use((req, res, next) => {
 
 /** Server */
 const httpServer = http.createServer(router);
-const PORT: any = process.env.PORT ?? 6060;
+const PORT: number = parseInt(process.env.PORT as string) ?? 6060;
 httpServer.listen(PORT, () => console.log(`The server is running on port ${PORT}`));
