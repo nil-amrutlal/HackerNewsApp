@@ -3,7 +3,7 @@
 import http from 'http';
 import express, { Express } from 'express';
 import morgan from 'morgan';
-import routes from './routes/stories';
+import routes from './routes/story.route';
 import * as dotenv from "dotenv";
 import path from 'path';
 import cors from "cors";

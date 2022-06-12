@@ -4,7 +4,9 @@ const router = express.Router();
 
 
 router.get('/getTopWords', StoryControler.getTopWords);
+// router.get('/getLastWeekPostWords', StoryControler.getLastWeekPostWords);
 router.get('/getLastWeekPostWords', StoryControler.getLastWeekPostWords);
+
 
 
 export = router;

@@ -2,8 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import axios, { AxiosResponse } from 'axios';
 import { StoryService } from '../services/story.service';
 
-
-
 // const getTop
 
 export class StoryControler{
@@ -13,7 +11,7 @@ export class StoryControler{
         try {
             const topWords = await StoryService.getTopWords(25);
             console.log(topWords);
-            res.status(200).send(topWords);
+            res.status(200).send({error: false, data: topWords});
         } catch (e) {
             res.status(500).send(e);
         }
@@ -23,11 +21,10 @@ export class StoryControler{
 
     static getLastWeekPostWords = async(req: Request, res: Response) => {
         try {
-            const topWords = await StoryService.getTopWords(25);
-            console.log(topWords);
-            res.status(200).send(topWords);
+            const topWords = await StoryService.getTopWordsFromOldPost(7);
+            res.status(200).send({error: false, data: topWords});
         } catch (e) {
-            res.status(500).send(e);
+            res.status(400).send(e);
         }
         
     }

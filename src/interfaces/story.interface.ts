@@ -1,13 +1,14 @@
 export interface Story {
-    id : Number;
+    id : number;
     deleted ?: boolean;
     type : string;
     by ?: string;
-    time ?: Number;
+    time ?: number;
     dead ?: boolean;
-    kids ?: Number[];
-    descendants ?: Number;
-    score ?: Number;
+    kids ?: number[];
+    descendants ?: number;
+    score ?: number;
     title ?: string;
-    url ?: string
+    url ?: string;
+    parent ?: number
   }
