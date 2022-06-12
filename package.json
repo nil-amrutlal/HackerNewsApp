@@ -6,11 +6,19 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
     "build": "rm -rf build/ --write source/ && tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nil-amrutlal/HackerNewsApp.git"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": "/node_modules/"
   },
   "keywords": [],
   "author": "",
@@ -25,8 +33,18 @@
     "@types/express": "^4.17.13",
     "@types/helmet": "^4.0.0",
     "@types/node": "^17.0.42",
-    "nodemon": "^2.0.16",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.2",
+    "eslint-plugin-promise": "^6.0.0",
+    "jest": "^28.1.1",
     "morgan": "^1.10.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.7.3"
   },
