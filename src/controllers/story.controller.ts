@@ -4,33 +4,26 @@ import { StoryService } from '../services/story.service';
 
 // const getTop
 
-export class StoryControler{
-
-
-    static getTopWords = async(req: Request, res: Response) => {
+export class StoryControler {
+    static getTopWords = async (req: Request, res: Response) => {
         try {
             const topWords = await StoryService.getTopWords(25);
             console.log(topWords);
-            res.status(200).send({error: false, data: topWords});
+            res.status(200).send({ error: false, data: topWords });
         } catch (e) {
             res.status(500).send(e);
         }
-        
-    }
+    };
 
-
-    static getLastWeekPostWords = async(req: Request, res: Response) => {
+    static getLastWeekPostWords = async (req: Request, res: Response) => {
         try {
             const topWords = await StoryService.getTopWordsFromOldPost(7);
-            res.status(200).send({error: false, data: topWords});
+            res.status(200).send({ error: false, data: topWords });
         } catch (e) {
             res.status(400).send(e);
         }
-        
-    }
-
+    };
 }
-
 
 // // getting latest stories
 // const getLastestStories = async (req: Request, res: Response, next: NextFunction) => {
@@ -47,14 +40,12 @@ export class StoryControler{
 //         .then(lastestStories => lastestStories.slice(0, 25).map((stories , index) =>
 //             console.log(index, " - ", stories)));
 
-        
 //     let result: AxiosResponse = await axios.get(`https://hacker-news.firebaseio.com/v0/item/31703550.json?print=pretty`);
 //     let storyData: Story = result.data;
 //     return res.status(200).json({
 //         message: storyData
 //     })
 // }
-
 
 // async function getLastestStories1() {
 //     let result : AxiosResponse = await axios.get(`${baseUrl}/newstories.json?print=pretty`);
