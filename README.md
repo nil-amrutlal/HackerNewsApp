@@ -9,6 +9,7 @@ This is application to retrieve information from the HackerNews API and display 
 ## Run the app
 
     npm run prod
+    npm run dev
 
 ## Run the tests
 
