@@ -51,14 +51,6 @@ export class StoryService {
 
         const wordCount = this.getWordCount(titleArr);
         const topWords = this.sortDictionary(wordCount, noTopWords);
-        // const wordCountArr = Object.keys(wordCount).map((key) => [
-        //     key,
-        //     wordCount[key],
-        // ]);
-        // wordCountArr.sort((a, b) => Number(b[1]) - Number(a[1]));
-        // const topWords = wordCountArr
-        //     .slice(0, noTopWords)
-        //     .map((item) => item[0].toString());
 
         return topWords;
     };
