@@ -36,6 +36,9 @@ The API runs on http://localhost:3000
     Content-Type: application/json
     Response: { error: boolean, data: array }
     
+### Notes 
+- The API response data is sorted from the most occuring word to the least occuring word
+    
 ### Assumptions 
 - The API works on GTM+2 timezone
 - The `GET /LastWeekPostWords` gets the top 10 word occurencies of a story's title
