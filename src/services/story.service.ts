@@ -96,7 +96,6 @@ export class StoryService {
 
         do {
             approximateStory = await HackerNewsService.getStoryInfo(idAttempt);
-            console.log(approximateStory);
 
             // Default Jump
             let newIdJump = Math.round(ratio) * multiplier;
@@ -113,12 +112,10 @@ export class StoryService {
 
             // If in bounds check for parent
             } else if (approximateStory.parent){ 
-                console.log("Parent");
                 idAttempt = approximateStory.parent;
 
             // Default Behaviour
             } else {
-                console.log("Default Jump: ", newIdJump);
                 multiplier += 1;
                 idAttempt += newIdJump;
             }
