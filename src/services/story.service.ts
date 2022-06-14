@@ -6,6 +6,7 @@ export class StoryService {
 
     constructor() {}
 
+
     public getWordCount = (titles: Array<string>): IDictionary => {
         const count: IDictionary = {};
         titles.forEach((title) => {
@@ -23,30 +24,45 @@ export class StoryService {
         return count;
     };
 
+    
+    public sortDictionary = (dictionary: IDictionary, noEntries: number) : string[] => {
+        const dictionaryArr = Object.keys(dictionary).map((key) => [
+            key,
+            dictionary[key],
+        ]);
+        dictionaryArr.sort((a, b) => Number(b[1]) - Number(a[1]));
+        const topWords = dictionaryArr
+            .slice(0, noEntries)
+            .map((item) => item[0].toString());
+        
+        return topWords;
+    }
+
+
     public getTopWords = async (noTopWords: number): Promise<string[]> => {
         const latestStories = await HackerNewsService.getLastestStories(25);
 
         const titleArr: Array<string> = await Promise.all(
             latestStories.map(async (storyID): Promise<any> => {
-                const storyDetails = await HackerNewsService.getStoryInfo(
-                    storyID
-                );
+                const storyDetails = await HackerNewsService.getStoryInfo(storyID);
                 return storyDetails.title? storyDetails.title : '';
             })
         );
 
         const wordCount = this.getWordCount(titleArr);
-        const wordCountArr = Object.keys(wordCount).map((key) => [
-            key,
-            wordCount[key],
-        ]);
-        wordCountArr.sort((a, b) => Number(b[1]) - Number(a[1]));
-        const topWords = wordCountArr
-            .slice(0, noTopWords)
-            .map((item) => item[0].toString());
+        const topWords = this.sortDictionary(wordCount, noTopWords);
+        // const wordCountArr = Object.keys(wordCount).map((key) => [
+        //     key,
+        //     wordCount[key],
+        // ]);
+        // wordCountArr.sort((a, b) => Number(b[1]) - Number(a[1]));
+        // const topWords = wordCountArr
+        //     .slice(0, noTopWords)
+        //     .map((item) => item[0].toString());
 
         return topWords;
     };
+
 
     // Get the ratio of unix jump per id
     public async getIDUnixRatioFromList(idList: number[]): Promise<number> {
@@ -61,6 +77,7 @@ export class StoryService {
         const idDiff = lastID - firstID;
         return unixDiff / idDiff;
     }
+
 
     public async getRandomStoryFromDate(lastId: number, ratio: number, days: number): Promise<Story> {
         let approximateStory: Story;
@@ -114,6 +131,7 @@ export class StoryService {
         return approximateStory;
     }
 
+
     public getPastUnixTimeStamp(date: Date, daysAgo: number): number {
         date.setDate(date.getDate() - daysAgo);
         return Math.round(Number(date) / 1000);
@@ -132,6 +150,7 @@ export class StoryService {
             wordArr.push(pastStory.title);
         }
         const wordCount = this.getWordCount(wordArr);
-        return wordCount;
+        const topWords = this.sortDictionary(wordCount, 10);
+        return topWords;
     }
 }
