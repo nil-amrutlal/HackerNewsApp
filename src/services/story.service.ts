@@ -103,11 +103,17 @@ export class StoryService {
             // If less than Start Unix Time Stamp : Id is incresed
             if (approximateStory.time && approximateStory.time < pastDateUnixStartStamp) {
                 newIdJump = Math.round((pastDateUnixStartStamp - Number(approximateStory.time)) / ratio);
+                if(newIdJump < 1){
+                    newIdJump = 1;
+                }
                 idAttempt += newIdJump;
 
             // If bigger than End Unix Time Stamp : Id is reduced
             } else if (approximateStory.time && approximateStory.time > pastDateUnixEndStamp) {
                 newIdJump = Math.round((Number(approximateStory.time) - pastDateUnixEndStamp) / ratio);
+                if(newIdJump < 1 ) {
+                    newIdJump = 1;
+                }
                 idAttempt -= newIdJump;
 
             // If in bounds check for parent
