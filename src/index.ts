@@ -1,12 +1,9 @@
 /** Required External Modules */
-
 import http from 'http';
 import express, { Express } from 'express';
 import morgan from 'morgan';
 import * as dotenv from 'dotenv';
 import path from 'path';
-import cors from 'cors';
-import helmet from 'helmet';
 import routes from './routes/story.route';
 
 const router: Express = express();
@@ -43,7 +40,7 @@ router.use('/', routes);
 
 /** Error handling */
 router.use((req, res, next) => {
-    const error = new Error('not found');
+    const error = new Error('Not Found');
     return res.status(404).json({
         message: error.message,
     });

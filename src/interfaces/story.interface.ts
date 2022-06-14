@@ -10,5 +10,4 @@ export interface Story {
     score?: number;
     title?: string;
     url?: string;
-    parent?: number;
 }
