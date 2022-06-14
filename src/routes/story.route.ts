@@ -3,7 +3,7 @@ import { StoryControler } from '../controllers/story.controller';
 
 const router = express.Router();
 
-router.get('/getTopWords', StoryControler.getTopWords);
-router.get('/getLastWeekPostWords', StoryControler.getLastWeekPostWords);
+router.get('/TopWords', StoryControler.getTopWords);
+router.get('/LastWeekPostWords', StoryControler.getLastWeekPostWords);
 
 export = router;

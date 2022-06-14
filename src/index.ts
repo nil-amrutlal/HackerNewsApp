@@ -40,8 +40,9 @@ router.use('/', routes);
 
 /** Error handling */
 router.use((req, res, next) => {
-    const error = new Error('Not Found');
+    const error = new Error('Not Fosund');
     return res.status(404).json({
+        error: true,
         message: error.message,
     });
 });
